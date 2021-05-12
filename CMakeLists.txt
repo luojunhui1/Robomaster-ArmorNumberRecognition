@@ -16,6 +16,6 @@ include_directories(${realsense2_INCLUDE_DIR})
 
 FILE(GLOB_RECURSE sourcefiles "Armor/src/*.cpp")
 
-ADD_EXECUTABLE(${BIN_NAME} train.cpp ${sourcefiles})
+ADD_EXECUTABLE(${BIN_NAME} predict.cpp ${sourcefiles})
 
 target_link_libraries(${BIN_NAME} ${OpenCV_LIBS})

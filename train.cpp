@@ -83,8 +83,9 @@ int main()
 
         cvtColor(src,bright,COLOR_BGR2GRAY);
 
-        //threshold(bright,binary,50, 255, CV_MINMAX);
+        threshold(bright,binary,50, 255, CV_MINMAX);
         //Canny(bright,  binary, 50, 255);
+        pyrDown(binary,binary);
 
        imshow("binary",binary);
         waitKey(20);
@@ -125,10 +126,9 @@ int main()
     /**=====================================SVM parameter configuration==============================================**/
     Ptr<cv::ml::SVM> svm = ml::SVM::create();
     svm->setType(ml::SVM::C_SVC);
-    svm->setKernel(ml::SVM::RBF);
-    svm->setTermCriteria(TermCriteria(TermCriteria::EPS, 1000, 1e-6));
-    svm->setGamma(0.01);
-    svm->setC(10.0);
+    svm->setKernel(ml::SVM::LINEAR);
+    svm->setTermCriteria(TermCriteria(TermCriteria::EPS, 10000, 1e-6));
+    //svm->setC(10.0);
 
     /**============================================train SVM=========================================================**/
     svm->train(trainingData,cv::ml::ROW_SAMPLE,classes);
